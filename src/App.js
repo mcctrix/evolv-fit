@@ -1,5 +1,7 @@
+import TrainerDashboard from "./components/TrainerDashboard";
+
 function App() {
-  return <div>hello</div>;
+  return <TrainerDashboard />;
 }
 
 export default App;
