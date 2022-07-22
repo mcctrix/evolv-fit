@@ -72,7 +72,7 @@ export const NextArrowSvg = ({ height, width }) => (
     width="30"
     height="60"
     viewBox="0 0 30 60"
-    fill="none"
+    fill="white"
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="50" height="80" rx="8" fill="#101317" />
