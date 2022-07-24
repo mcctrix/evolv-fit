@@ -5,27 +5,28 @@
     "email": "charviesharma@gmail.com",
     "profilePic": "/female1.png",
     "stepsWalked": 2600,
-    "stepsTarget": "4000",
+    "stepsTarget": 4000,
     "performedDate": "15 Oct",
-    "scheduleData": "22 Oct",
+    "scheduleDate": "22 Oct",
     "calorieIntake": 2700,
     "calorieTarget": 3900,
     "proteinConsumed": 40,
     "proteinTarget": 100,
     "carbConsumed": 40,
-    "carbTarget": 100,
+    "carbTarget": 70,
     "fatConsumed": 40,
-    "fatTarget": 100
+    "fatTarget": 60,
+    "feedback": true
   },
   {
     "userid": 2,
     "name": "David johnson",
-    "email": "davidjohnsondavid@gmail.com",
+    "email": "davidjohnson@gmail.com",
     "profilePic": "/male1.jpg",
     "stepsWalked": 3000,
-    "stepsTarget": "4500",
+    "stepsTarget": 4500,
     "performedDate": "15 Oct",
-    "scheduleData": "22 Oct",
+    "scheduleDate": "22 Oct",
     "calorieIntake": 2700,
     "calorieTarget": 3900,
     "proteinConsumed": 40,
@@ -33,7 +34,8 @@
     "carbConsumed": 40,
     "carbTarget": 100,
     "fatConsumed": 40,
-    "fatTarget": 100
+    "fatTarget": 100,
+    "feedback": false
   },
   {
     "userid": 3,
@@ -41,9 +43,9 @@
     "email": "charviesharma@gmail.com",
     "profilePic": "/female1.png",
     "stepsWalked": 1500,
-    "stepsTarget": "4000",
+    "stepsTarget": 4000,
     "performedDate": "16 Oct",
-    "scheduleData": "25 OCt",
+    "scheduleDate": "16 Oct",
     "calorieIntake": 2700,
     "calorieTarget": 3900,
     "proteinConsumed": 40,
@@ -51,6 +53,7 @@
     "carbConsumed": 40,
     "carbTarget": 100,
     "fatConsumed": 40,
-    "fatTarget": 100
+    "fatTarget": 100,
+    "feedback": false
   }
 ]

@@ -1,3 +1,4 @@
+import React from "react";
 import { Nutrition, Step, Workout } from "./Svg";
 import Trainers from "../data/Trainers.json";
 import TrainerCard from "./TrainerCard";
@@ -18,8 +19,8 @@ const TrainerDashboard = () => {
         width="100%"
         marginBottom="2"
         justifyContent="flex-end"
-        gap="8"
-        paddingRight="36"
+        gap="12"
+        paddingRight={{ base: "28", lg: "36" }}
       >
         <HStack justifyContent={"center"}>
           <Step height={height} width={width} />
@@ -29,7 +30,7 @@ const TrainerDashboard = () => {
           <Workout height={height} width={width} />
           <Text>Workout</Text>
         </HStack>
-        <HStack paddingLeft="1rem">
+        <HStack paddingLeft={{ base: 0, lg: 20 }}>
           <Nutrition height={height} width={width} />
           <Text>Nutrition</Text>
         </HStack>
