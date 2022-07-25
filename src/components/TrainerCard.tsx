@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-import { HStack, VStack, Image, Text, Stack, Button } from "@chakra-ui/react";
+import {
+  HStack,
+  VStack,
+  Image,
+  Text,
+  Stack,
+  Button,
+  position,
+} from "@chakra-ui/react";
 import { ChevronRightIcon, SmallAddIcon, MinusIcon } from "@chakra-ui/icons";
 import { PieChart } from "react-minimal-pie-chart";
 
-import { NextArrowSvg, PerformDateSvg, ScheduleDataSvg } from "./Svg";
+import { BellIcon, PerformDateSvg, ScheduleDataSvg } from "./Svg";
 import NumberFormatIntoK from "../utils/NumberFormatIntoK";
 import { useNavigate } from "react-router-dom";
 
@@ -33,7 +41,7 @@ const TrainerCard = ({ Data }: any) => {
     (Data.stepsWalked / Data.stepsTarget) * 100;
   const fontSizes = { md: "smaller", lg: "md" };
   const paddingForNextDiv = { base: "32px 10px", lg: "32px 14px" };
-  const chartsSize = { base: "8", md: "12", lg: "16" };
+  const chartsSize = { base: "8", md: "12", lg: "24" };
 
   return (
     <HStack
@@ -42,10 +50,8 @@ const TrainerCard = ({ Data }: any) => {
       paddingY="2"
       borderRadius="16px"
       gap={{ base: "1rem", lg: "2.5rem" }}
-      // onMouseOut={() => setDisplayTooltip(false)}
-      // onClick={() => {
-
-      // }}
+      onClick={() => setDisplayTooltip(false)}
+      onMouseLeave={() => setDisplayTooltip(false)}
     >
       <Image
         src={Data.profilePic}
@@ -54,24 +60,42 @@ const TrainerCard = ({ Data }: any) => {
         borderRadius="50%"
         backgroundColor="yellow"
       />
+      {/* Name and Email */}
       <VStack alignItems="flex-start" width={{ lg: "12rem", base: "8rem" }}>
         <Text fontSize={{ lg: "md", md: "sm", base: "4px" }}>{Data.name}</Text>
         <Text fontSize={{ lg: "sm", md: "11px", base: "4px" }}>
           {Data.email}
         </Text>
       </VStack>
+      {/* Workout Div */}
       <HStack>
-        <Stack boxSize={chartsSize}>
-          <CircularProgressbar
-            value={percentageOfStepsCompleted}
-            styles={buildStyles({
-              textColor: "#FFFFFF",
-              pathColor: "#7FD18C",
-              trailColor: "#FFFFFF",
-              rotation: 0.1 + (1 - percentageOfStepsCompleted / 100) / 2,
-            })}
-            text={`${Data.stepsWalked}`}
-          />
+        <Stack boxSize={chartsSize} position="relative">
+          <Stack position="absolute" h="full" w="full">
+            <CircularProgressbar
+              value={percentageOfStepsCompleted}
+              styles={buildStyles({
+                // textColor: "#FFFFFF",
+                pathColor: "#7FD18C",
+                trailColor: "#FFFFFF",
+                rotation: 0.1 + (1 - percentageOfStepsCompleted / 100) / 2,
+                // textSize: "1.4rem",
+              })}
+            />
+          </Stack>
+          <VStack
+            position="absolute"
+            justifyContent="center"
+            alignItems="center"
+            w="full"
+            height="full"
+          >
+            <Text display="flex" flexDirection="column" fontSize="1.4rem">
+              {Data.stepsWalked}
+              <Text textAlign="center" fontSize="0.7rem" marginTop="-2">
+                Steps
+              </Text>
+            </Text>
+          </VStack>
         </Stack>
         <VStack>
           <StackForAddMinusButton clickEvent={incrementSteps}>
@@ -92,6 +116,7 @@ const TrainerCard = ({ Data }: any) => {
           </StackForAddMinusButton>
         </VStack>
       </HStack>
+      {/* Workout Date and Schedule Div */}
       <HStack>
         <VStack>
           <HStack>
@@ -125,12 +150,8 @@ const TrainerCard = ({ Data }: any) => {
           )}
         </Button>
       </HStack>
-      <HStack
-        justifyContent="stretch"
-        borderRadius="8px"
-        position="relative"
-        id="pie"
-      >
+      {/* Nutrition  */}
+      <HStack justifyContent="stretch" borderRadius="8px" position="relative">
         <Stack boxSize={chartsSize}>
           <PieChart
             lineWidth={30}
@@ -171,7 +192,7 @@ const TrainerCard = ({ Data }: any) => {
                   backgroundColor="#F45C84"
                   h="6"
                   zIndex="20"
-                  w="50%"
+                  w={`${(Data.proteinConsumed / Data.proteinTarget) * 100}%`}
                   position="relative"
                   _after={{
                     content: `"${Data.proteinConsumed}g"`,
@@ -200,7 +221,7 @@ const TrainerCard = ({ Data }: any) => {
                   backgroundColor="#03C6FA"
                   h="6"
                   zIndex="20"
-                  w="50%"
+                  w={`${(Data.fatConsumed / Data.fatTarget) * 100}%`}
                   position="relative"
                   _after={{
                     content: `"${Data.fatConsumed}g"`,
@@ -221,7 +242,7 @@ const TrainerCard = ({ Data }: any) => {
             >
               <HStack justifyContent="space-between" w="full" paddingX="2">
                 <Text>CARBS</Text>
-                <Text>{Data.carbConsumed}g</Text>
+                <Text>{Data.carbTarget}g</Text>
               </HStack>
               <Stack w="72" h="6" borderRadius="xl" backgroundColor="#101317">
                 <Stack
@@ -229,7 +250,7 @@ const TrainerCard = ({ Data }: any) => {
                   backgroundColor="#F0C50F"
                   h="6"
                   zIndex="20"
-                  w="50%"
+                  w={`${(Data.carbConsumed / Data.carbTarget) * 100}%`}
                   position="relative"
                   _after={{
                     content: `"${Data.carbConsumed}g"`,
@@ -264,14 +285,13 @@ const TrainerCard = ({ Data }: any) => {
           <ChevronRightIcon />
         </Button>
       </HStack>
-
+      {/* Bell Icon */}
       <Button backgroundColor="#36F5C7" padding="10px" borderRadius="xl">
-        <NextArrowSvg />
+        <BellIcon />
       </Button>
     </HStack>
   );
 };
-export default TrainerCard;
 
 const StackForAddMinusButton = ({
   children,
@@ -290,3 +310,5 @@ const StackForAddMinusButton = ({
     {children}
   </Button>
 );
+
+export default TrainerCard;

@@ -84,7 +84,7 @@ export const ScheduleDataSvg = ({ height, width }: appProps) => (
     />
   </svg>
 );
-export const NextArrowSvg = ({ height, width }: appProps) => (
+export const BellIcon = ({ height, width }: appProps) => (
   <svg
     width="19"
     height="21"
