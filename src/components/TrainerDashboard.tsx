@@ -20,7 +20,7 @@ const TrainerDashboard = () => {
         marginBottom="2"
         justifyContent="flex-end"
         gap="12"
-        paddingRight={{ base: "28", lg: "36" }}
+        paddingRight={{ base: "28", lg: "40" }}
       >
         <HStack justifyContent={"center"}>
           <Step height={height} width={width} />
