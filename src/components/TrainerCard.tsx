@@ -40,7 +40,7 @@ const TrainerCard = ({ Data }: any) => {
   const percentageOfStepsCompleted =
     (Data.stepsWalked / Data.stepsTarget) * 100;
   const fontSizes = { md: "smaller", lg: "md" };
-  const paddingForNextDiv = { base: "32px 10px", lg: "32px 14px" };
+  const paddingForNextDiv = { base: "28px 10px", lg: "32px 14px" };
   const chartsSize = { base: "8", md: "12", lg: "24" };
 
   return (
@@ -74,11 +74,9 @@ const TrainerCard = ({ Data }: any) => {
             <CircularProgressbar
               value={percentageOfStepsCompleted}
               styles={buildStyles({
-                // textColor: "#FFFFFF",
                 pathColor: "#7FD18C",
                 trailColor: "#FFFFFF",
                 rotation: 0.1 + (1 - percentageOfStepsCompleted / 100) / 2,
-                // textSize: "1.4rem",
               })}
             />
           </Stack>
@@ -89,9 +87,17 @@ const TrainerCard = ({ Data }: any) => {
             w="full"
             height="full"
           >
-            <Text display="flex" flexDirection="column" fontSize="1.4rem">
+            <Text
+              display="flex"
+              flexDirection="column"
+              fontSize={{ base: "0.7rem", lg: "1.4rem" }}
+            >
               {Data.stepsWalked}
-              <Text textAlign="center" fontSize="0.7rem" marginTop="-2">
+              <Text
+                textAlign="center"
+                fontSize={{ base: "0.4rem", lg: "0.7rem" }}
+                marginTop="-2"
+              >
                 Steps
               </Text>
             </Text>
