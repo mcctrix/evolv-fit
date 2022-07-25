@@ -16,9 +16,9 @@ const TrainerCard = ({ Data }: any) => {
   const [calorieTarget, setCalorieTarget] = useState<number>(
     Data.calorieTarget
   );
+  const [displayTooltip, setDisplayTooltip] = useState(false);
 
   // Converting Number to string because cannot display first digit from number but can definitely do on String
-
   const TotalStepsDisplay = NumberFormatIntoK(totalSteps);
 
   const calorieTargetDisplay = NumberFormatIntoK(calorieTarget);
@@ -41,6 +41,7 @@ const TrainerCard = ({ Data }: any) => {
       paddingY="2"
       borderRadius="16px"
       gap={{ base: "1rem", lg: "2.5rem" }}
+      onMouseOut={() => setDisplayTooltip(false)}
     >
       <Image
         src={Data.profilePic}
@@ -120,7 +121,12 @@ const TrainerCard = ({ Data }: any) => {
           )}
         </Button>
       </HStack>
-      <HStack justifyContent="stretch" borderRadius="8px" position="relative">
+      <HStack
+        justifyContent="stretch"
+        borderRadius="8px"
+        position="relative"
+        id="pie"
+      >
         <Stack boxSize={chartsSize}>
           <PieChart
             lineWidth={30}
@@ -132,19 +138,105 @@ const TrainerCard = ({ Data }: any) => {
               { title: "Carb", value: Data.carbTarget, color: "#03C7FC" },
               { title: "Fat", value: Data.fatTarget, color: "#F45C84" },
             ]}
+            onMouseOver={() => setDisplayTooltip(true)}
           />
           <VStack
             backgroundColor="#333B44"
             zIndex="10"
-            scale="0"
+            display={displayTooltip ? "flex" : "none"}
+            bottom="-72"
             position="absolute"
-            bottom="0"
+            left="-28"
             borderRadius="xl"
             paddingX="2"
             paddingY="4"
           >
-            <VStack w="64">
-              <Text>PROTEIN</Text>
+            <VStack
+              backgroundColor="#1B222A"
+              paddingX="2"
+              paddingY="4"
+              borderRadius="xl"
+            >
+              <HStack justifyContent="space-between" w="full" paddingX="2">
+                <Text>PROTEIN</Text>
+                <Text>{Data.proteinTarget}g</Text>
+              </HStack>
+              <Stack w="72" h="6" borderRadius="xl" backgroundColor="#101317">
+                <Stack
+                  borderRadius="xl"
+                  backgroundColor="#F45C84"
+                  h="6"
+                  zIndex="20"
+                  w="50%"
+                  position="relative"
+                  _after={{
+                    content: `"${Data.proteinConsumed}g"`,
+                    position: "absolute",
+                    right: "-7",
+                    fontSize: "0.9rem",
+                    top: "1",
+                    color: "#F45C84",
+                  }}
+                ></Stack>
+              </Stack>
+            </VStack>
+            <VStack
+              backgroundColor="#1B222A"
+              paddingX="2"
+              paddingY="4"
+              borderRadius="xl"
+            >
+              <HStack justifyContent="space-between" w="full" paddingX="2">
+                <Text>FATS</Text>
+                <Text>{Data.fatTarget}g</Text>
+              </HStack>
+              <Stack w="72" h="6" borderRadius="xl" backgroundColor="#101317">
+                <Stack
+                  borderRadius="xl"
+                  backgroundColor="#03C6FA"
+                  h="6"
+                  zIndex="20"
+                  w="50%"
+                  position="relative"
+                  _after={{
+                    content: `"${Data.fatConsumed}g"`,
+                    position: "absolute",
+                    right: "-7",
+                    fontSize: "0.9rem",
+                    top: "1",
+                    color: "#03C6FA",
+                  }}
+                ></Stack>
+              </Stack>
+            </VStack>
+            <VStack
+              backgroundColor="#1B222A"
+              paddingX="2"
+              paddingY="4"
+              borderRadius="xl"
+            >
+              <HStack justifyContent="space-between" w="full" paddingX="2">
+                <Text>CARBS</Text>
+                <Text>{Data.carbConsumed}g</Text>
+              </HStack>
+              <Stack w="72" h="6" borderRadius="xl" backgroundColor="#101317">
+                <Stack
+                  borderRadius="xl"
+                  backgroundColor="#F0C50F"
+                  h="6"
+                  zIndex="20"
+                  w="50%"
+                  position="relative"
+                  _after={{
+                    content: `"${Data.carbConsumed}g"`,
+                    position: "absolute",
+                    right: "-7",
+                    fontSize: "0.9rem",
+                    top: "1",
+                    color: "#F0C50F",
+                  }}
+                ></Stack>
+              </Stack>
             </VStack>
           </VStack>
         </Stack>
