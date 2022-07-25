@@ -86,6 +86,7 @@ const TrainerCard = ({ Data }: any) => {
             alignItems="center"
             w="full"
             height="full"
+            style={{ marginTop: "0" }}
           >
             <Text
               display="flex"
@@ -96,7 +97,7 @@ const TrainerCard = ({ Data }: any) => {
               <Text
                 textAlign="center"
                 fontSize={{ base: "0.4rem", lg: "0.7rem" }}
-                marginTop="-2"
+                marginTop={{ base: "0", lg: "-2" }}
               >
                 Steps
               </Text>
