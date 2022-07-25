@@ -1,7 +1,7 @@
 # How to run this WebApp ?
 
-Step 1: git clone it
-Step 2: npm install
+Step 1: git clone it <br>
+Step 2: npm install <br>
 Step 2: npm start
 
 # What is it?
