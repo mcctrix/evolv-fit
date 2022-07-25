@@ -34,6 +34,7 @@ const TrainerCard = ({ Data }: any) => {
   const fontSizes = { md: "smaller", lg: "md" };
   const paddingForNextDiv = { base: "32px 10px", lg: "32px 14px" };
   const chartsSize = { base: "8", md: "12", lg: "16" };
+
   return (
     <HStack
       backgroundColor="#1e262f"
@@ -41,7 +42,10 @@ const TrainerCard = ({ Data }: any) => {
       paddingY="2"
       borderRadius="16px"
       gap={{ base: "1rem", lg: "2.5rem" }}
-      onMouseOut={() => setDisplayTooltip(false)}
+      // onMouseOut={() => setDisplayTooltip(false)}
+      // onClick={() => {
+
+      // }}
     >
       <Image
         src={Data.profilePic}
