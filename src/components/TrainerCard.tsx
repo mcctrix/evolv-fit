@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-import {
-  HStack,
-  VStack,
-  Image,
-  Text,
-  Stack,
-  Button,
-  position,
-} from "@chakra-ui/react";
+import { HStack, VStack, Image, Text, Stack, Button } from "@chakra-ui/react";
 import { ChevronRightIcon, SmallAddIcon, MinusIcon } from "@chakra-ui/icons";
 import { PieChart } from "react-minimal-pie-chart";
 
@@ -39,22 +31,26 @@ const TrainerCard = ({ Data }: any) => {
 
   const percentageOfStepsCompleted =
     (Data.stepsWalked / Data.stepsTarget) * 100;
-  const fontSizes = { md: "smaller", lg: "md" };
-  const paddingForNextDiv = { base: "28px 10px", lg: "32px 14px" };
-  const chartsSize = { base: "32", md: "12", lg: "24" };
+  const fontSizes = { base: "xl", md: "smaller", lg: "md" };
+  const paddingForNextDiv = {
+    base: "40px 12px",
+    md: "28px 10px",
+    lg: "32px 14px",
+  };
+  const chartsSize = { base: "24", md: "12", lg: "24" };
 
   return (
     <HStack
       backgroundColor="#1e262f"
-      paddingX={{ base: "0", md: "4" }}
-      paddingY={{ base: "16", md: "2" }}
+      margin={{ base: "4", md: "0" }}
+      paddingX={{ base: "4", md: "4" }}
+      paddingY={{ base: "6", md: "2" }}
       borderRadius="16px"
       gap={{ base: "1rem", lg: "2.5rem" }}
       onClick={() => setDisplayTooltip(false)}
       onMouseLeave={() => setDisplayTooltip(false)}
       flexDir={{ base: "column", md: "row" }}
-      // justifyContent="flex-start"
-      w="100vw"
+      w={{ md: "full", base: "90vw" }}
     >
       <Image
         src={Data.profilePic}
@@ -64,19 +60,34 @@ const TrainerCard = ({ Data }: any) => {
         backgroundColor="yellow"
       />
       {/* Name and Email */}
-      <VStack alignItems="flex-start" width={{ lg: "12rem" }}>
-        <Text
-          w={{ base: "max-content" }}
-          fontSize={{ lg: "md", md: "sm", base: "2xl" }}
+      <HStack
+        alignItems="center"
+        justifyContent="space-between"
+        width={{ md: "12rem", base: "full" }}
+      >
+        <Stack display={{ base: "block", md: "none" }}></Stack>
+        <VStack>
+          <Text fontSize={{ lg: "md", md: "sm", base: "2xl" }}>
+            {Data.name}
+          </Text>
+          <Text fontSize={{ lg: "sm", md: "11px", base: "md" }}>
+            {Data.email}
+          </Text>
+        </VStack>
+        <Button
+          backgroundColor="#36F5C7"
+          padding="10px"
+          borderRadius="xl"
+          display={{ base: "block", md: "none" }}
         >
-          {Data.name}
-        </Text>
-        <Text fontSize={{ lg: "sm", md: "11px", base: "md" }}>
-          {Data.email}
-        </Text>
-      </VStack>
+          <BellIcon />
+        </Button>
+      </HStack>
       {/* Workout Div */}
-      <HStack justifyContent={{ base: "flex-start" }}>
+      <HStack
+      // justifyContent={{ base: "space-between", md: "center" }}
+      // w={{ base: "full", md: "min-content" }}
+      >
         <Stack boxSize={chartsSize} position="relative">
           <Stack position="absolute" h="full" w="full">
             <CircularProgressbar
@@ -99,12 +110,12 @@ const TrainerCard = ({ Data }: any) => {
             <Text
               display="flex"
               flexDirection="column"
-              fontSize={{ base: "1.5rem", md: "0.7rem", lg: "1.4rem" }}
+              fontSize={{ base: "1.2rem", md: "0.7rem", lg: "1.4rem" }}
             >
               {Data.stepsWalked}
               <Text
                 textAlign="center"
-                fontSize={{ base: "1.2rem", md: "0.4rem", lg: "0.7rem" }}
+                fontSize={{ base: "0.9rem", md: "0.4rem", lg: "0.7rem" }}
                 marginTop={{ base: "0", lg: "-2" }}
               >
                 Steps
@@ -284,8 +295,18 @@ const TrainerCard = ({ Data }: any) => {
           <StackForAddMinusButton clickEvent={incrementCalorieTarget}>
             <SmallAddIcon margin={0} padding={0} />
           </StackForAddMinusButton>
-          <Text style={{ marginTop: "5px" }}>{calorieTargetDisplay}</Text>
-          <Text style={{ marginTop: "5px" }}>target</Text>
+          <Text
+            style={{ marginTop: "5px" }}
+            fontSize={{ base: "1.4rem", md: "1rem" }}
+          >
+            {calorieTargetDisplay}
+          </Text>
+          <Text
+            style={{ marginTop: "5px" }}
+            fontSize={{ base: "1.4rem", md: "1rem" }}
+          >
+            target
+          </Text>
           <StackForAddMinusButton clickEvent={decrementCalorieTarget}>
             <MinusIcon w={2} h={2} />
           </StackForAddMinusButton>
@@ -301,7 +322,12 @@ const TrainerCard = ({ Data }: any) => {
         </Button>
       </HStack>
       {/* Bell Icon */}
-      <Button backgroundColor="#36F5C7" padding="10px" borderRadius="xl">
+      <Button
+        backgroundColor="#36F5C7"
+        padding="10px"
+        borderRadius="xl"
+        display={{ base: "none", md: "block" }}
+      >
         <BellIcon />
       </Button>
     </HStack>
