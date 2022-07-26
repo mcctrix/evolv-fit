@@ -12,8 +12,8 @@ const TrainerDashboard = () => {
       borderRadius={"xl"}
       background={"#101317"}
       boxShadow="2px 3px 42px rgba(0, 0, 0, 0.5)"
-      paddingY={"5"}
-      paddingX="4"
+      paddingY={{ base: "0", md: "5" }}
+      paddingX={{ base: "0", md: "4" }}
     >
       <HStack
         width="100%"
@@ -21,6 +21,7 @@ const TrainerDashboard = () => {
         justifyContent="flex-end"
         gap="12"
         paddingRight={{ base: "28", lg: "40" }}
+        display={{ md: "flex", base: "none" }}
       >
         <HStack justifyContent={"center"}>
           <Step height={height} width={width} />

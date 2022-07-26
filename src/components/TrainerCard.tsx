@@ -41,34 +41,42 @@ const TrainerCard = ({ Data }: any) => {
     (Data.stepsWalked / Data.stepsTarget) * 100;
   const fontSizes = { md: "smaller", lg: "md" };
   const paddingForNextDiv = { base: "28px 10px", lg: "32px 14px" };
-  const chartsSize = { base: "8", md: "12", lg: "24" };
+  const chartsSize = { base: "32", md: "12", lg: "24" };
 
   return (
     <HStack
       backgroundColor="#1e262f"
-      paddingX="4"
-      paddingY="2"
+      paddingX={{ base: "0", md: "4" }}
+      paddingY={{ base: "16", md: "2" }}
       borderRadius="16px"
       gap={{ base: "1rem", lg: "2.5rem" }}
       onClick={() => setDisplayTooltip(false)}
       onMouseLeave={() => setDisplayTooltip(false)}
+      flexDir={{ base: "column", md: "row" }}
+      // justifyContent="flex-start"
+      w="100vw"
     >
       <Image
         src={Data.profilePic}
         alt="Trainer"
-        boxSize={{ lg: "12", base: "8" }}
+        boxSize={{ md: "12", base: "48" }}
         borderRadius="50%"
         backgroundColor="yellow"
       />
       {/* Name and Email */}
-      <VStack alignItems="flex-start" width={{ lg: "12rem", base: "8rem" }}>
-        <Text fontSize={{ lg: "md", md: "sm", base: "4px" }}>{Data.name}</Text>
-        <Text fontSize={{ lg: "sm", md: "11px", base: "4px" }}>
+      <VStack alignItems="flex-start" width={{ lg: "12rem" }}>
+        <Text
+          w={{ base: "max-content" }}
+          fontSize={{ lg: "md", md: "sm", base: "2xl" }}
+        >
+          {Data.name}
+        </Text>
+        <Text fontSize={{ lg: "sm", md: "11px", base: "md" }}>
           {Data.email}
         </Text>
       </VStack>
       {/* Workout Div */}
-      <HStack>
+      <HStack justifyContent={{ base: "flex-start" }}>
         <Stack boxSize={chartsSize} position="relative">
           <Stack position="absolute" h="full" w="full">
             <CircularProgressbar
@@ -91,12 +99,12 @@ const TrainerCard = ({ Data }: any) => {
             <Text
               display="flex"
               flexDirection="column"
-              fontSize={{ base: "0.7rem", lg: "1.4rem" }}
+              fontSize={{ base: "1.5rem", md: "0.7rem", lg: "1.4rem" }}
             >
               {Data.stepsWalked}
               <Text
                 textAlign="center"
-                fontSize={{ base: "0.4rem", lg: "0.7rem" }}
+                fontSize={{ base: "1.2rem", md: "0.4rem", lg: "0.7rem" }}
                 marginTop={{ base: "0", lg: "-2" }}
               >
                 Steps
